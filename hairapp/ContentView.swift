@@ -10,13 +10,13 @@ import RealityKit
 import ARKit
 
 struct ContentView: View {
-    @State private var useFrontCamera: Bool = true // State to track which camera to use
-    
+    @State private var useFrontCamera: Bool = true
+
     var body: some View {
         VStack {
             ARViewContainer(useFrontCamera: $useFrontCamera)
                 .edgesIgnoringSafeArea(.all)
-            
+
             Button(action: {
                 useFrontCamera.toggle()
             }) {
@@ -48,10 +48,10 @@ struct ARViewContainer: UIViewRepresentable {
         arView.session.pause() // Pause the current session before reconfiguring
         
         if useFrontCamera {
-            // Configure AR session for face tracking (front camera)
             let config = ARFaceTrackingConfiguration()
             arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
             
+            loadHairModel(arView: arView)
         } else {
             let config = ARWorldTrackingConfiguration()
             config.planeDetection = [.horizontal, .vertical]
@@ -59,9 +59,24 @@ struct ARViewContainer: UIViewRepresentable {
             arView.scene.anchors.removeAll()
         }
     }
-
-}
-
-#Preview {
-    ContentView()
+    
+    private func loadHairModel(arView: ARView) {
+        do {
+               // Load the hair model from the .usdc file
+               let hairEntity = try Entity.loadModel(named: "Hair.usdc")
+               // Adjust the position of the hair model
+               // Use a negative y-value to move the hair down
+                hairEntity.position = SIMD3<Float>(0, -0.17, -0.03) // Adjust the y-value as needed
+                hairEntity.scale = SIMD3<Float>(0.26, 0.26, 0.26)
+               
+               // Create an anchor for the hair model
+               let anchor = AnchorEntity(.face)
+               anchor.addChild(hairEntity)
+               
+               // Add the anchor to the scene
+               arView.scene.addAnchor(anchor)
+           } catch {
+               print("Failed to load the hair model: \(error.localizedDescription)")
+           }
+    }
 }

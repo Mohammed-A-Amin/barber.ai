@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3713B4E22C78561700B21851 /* Hair.usdc in Resources */ = {isa = PBXBuildFile; fileRef = 3713B4E12C78561700B21851 /* Hair.usdc */; };
 		3756C91F2C71A97A006B15CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756C91E2C71A97A006B15CB /* AppDelegate.swift */; };
 		3756C9212C71A97A006B15CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756C9202C71A97A006B15CB /* ContentView.swift */; };
 		3756C9232C71A97C006B15CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3756C9222C71A97C006B15CB /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3713B4E12C78561700B21851 /* Hair.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hair.usdc; sourceTree = "<group>"; };
 		3756C91B2C71A97A006B15CB /* hairapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hairapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3756C91E2C71A97A006B15CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3756C9202C71A97A006B15CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		3756C9122C71A97A006B15CB = {
 			isa = PBXGroup;
 			children = (
+				3713B4E12C78561700B21851 /* Hair.usdc */,
 				3756C91D2C71A97A006B15CB /* hairapp */,
 				3756C92E2C71A97C006B15CB /* hairappTests */,
 				3756C9382C71A97C006B15CB /* hairappUITests */,
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3713B4E22C78561700B21851 /* Hair.usdc in Resources */,
 				3756C9262C71A97C006B15CB /* Preview Assets.xcassets in Resources */,
 				3756C9232C71A97C006B15CB /* Assets.xcassets in Resources */,
 			);
