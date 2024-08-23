@@ -47,6 +47,7 @@
 		3756C9352C71A97C006B15CB /* hairappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hairappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3756C9392C71A97C006B15CB /* hairappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hairappUITests.swift; sourceTree = "<group>"; };
 		3756C93B2C71A97C006B15CB /* hairappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hairappUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		376E788B2C79519700386250 /* Hair2.usdc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hair2.usdc; sourceTree = "<group>"; };
 		DD0FDE672C784076008C15B5 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +79,7 @@
 		3756C9122C71A97A006B15CB = {
 			isa = PBXGroup;
 			children = (
+				376E788B2C79519700386250 /* Hair2.usdc */,
 				3713B4E12C78561700B21851 /* Hair.usdc */,
 				3756C91D2C71A97A006B15CB /* hairapp */,
 				3756C92E2C71A97C006B15CB /* hairappTests */,
@@ -430,7 +432,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"hairapp/Preview Content\"";
-				DEVELOPMENT_TEAM = V3XK9AVQ75;
+				DEVELOPMENT_TEAM = J9CLXN4D2F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -445,7 +447,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = style.barber;
+				PRODUCT_BUNDLE_IDENTIFIER = style.hairapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -461,7 +463,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"hairapp/Preview Content\"";
-				DEVELOPMENT_TEAM = V3XK9AVQ75;
+				DEVELOPMENT_TEAM = J9CLXN4D2F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -476,7 +478,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = style.barber;
+				PRODUCT_BUNDLE_IDENTIFIER = style.hairapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
