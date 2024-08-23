@@ -10,9 +10,27 @@ import RealityKit
 import ARKit
 
 struct ContentView: View {
-    @State private var useFrontCamera: Bool = true // State to track which camera to use
-    
+    @State private var useFrontCamera: Bool = false // State to track which camera to use
+    @State private var showSplash = true
     var body: some View {
+        ZStack{
+            if showSplash {
+                SplashScreenView().transition(.opacity).animation(.easeOut(duration: 1.5))
+                Text("barber.ai")
+            }
+//            else {
+//                Text("Hi Hagoo").font(.largeTitle)
+//            }
+        }
+        .onAppear{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+                withAnimation{
+                    self.showSplash = false
+                }
+            }
+        }
+        
+        
         VStack {
             ARViewContainer(useFrontCamera: $useFrontCamera)
                 .edgesIgnoringSafeArea(.all)

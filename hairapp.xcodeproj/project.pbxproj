@@ -14,6 +14,7 @@
 		3756C9302C71A97C006B15CB /* hairappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756C92F2C71A97C006B15CB /* hairappTests.swift */; };
 		3756C93A2C71A97C006B15CB /* hairappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756C9392C71A97C006B15CB /* hairappUITests.swift */; };
 		3756C93C2C71A97C006B15CB /* hairappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756C93B2C71A97C006B15CB /* hairappUITestsLaunchTests.swift */; };
+		DD0FDE682C784076008C15B5 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0FDE672C784076008C15B5 /* SplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		3756C9352C71A97C006B15CB /* hairappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hairappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3756C9392C71A97C006B15CB /* hairappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hairappUITests.swift; sourceTree = "<group>"; };
 		3756C93B2C71A97C006B15CB /* hairappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hairappUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DD0FDE672C784076008C15B5 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		3756C91D2C71A97A006B15CB /* hairapp */ = {
 			isa = PBXGroup;
 			children = (
+				DD0FDE672C784076008C15B5 /* SplashScreenView.swift */,
 				3756C91E2C71A97A006B15CB /* AppDelegate.swift */,
 				3756C9202C71A97A006B15CB /* ContentView.swift */,
 				3756C9222C71A97C006B15CB /* Assets.xcassets */,
@@ -259,6 +262,7 @@
 			files = (
 				3756C9212C71A97A006B15CB /* ContentView.swift in Sources */,
 				3756C91F2C71A97A006B15CB /* AppDelegate.swift in Sources */,
+				DD0FDE682C784076008C15B5 /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +426,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"hairapp/Preview Content\"";
-				DEVELOPMENT_TEAM = J9CLXN4D2F;
+				DEVELOPMENT_TEAM = V3XK9AVQ75;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -453,7 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"hairapp/Preview Content\"";
-				DEVELOPMENT_TEAM = J9CLXN4D2F;
+				DEVELOPMENT_TEAM = V3XK9AVQ75;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
