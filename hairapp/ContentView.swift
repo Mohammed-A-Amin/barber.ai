@@ -9,37 +9,57 @@ import SwiftUI
 import RealityKit
 import ARKit
 
-struct ContentView : View {
+struct ContentView: View {
+    @State private var useFrontCamera: Bool = true // State to track which camera to use
+    
     var body: some View {
-        ARViewContainer().edgesIgnoringSafeArea(.all)
+        VStack {
+            ARViewContainer(useFrontCamera: $useFrontCamera)
+                .edgesIgnoringSafeArea(.all)
+            
+            Button(action: {
+                useFrontCamera.toggle()
+            }) {
+                Text("Switch Camera")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
+            .padding()
+        }
     }
 }
 
 struct ARViewContainer: UIViewRepresentable {
+    @Binding var useFrontCamera: Bool
     
     func makeUIView(context: Context) -> ARView {
-        
         let arView = ARView(frame: .zero)
-
-        // Create a cube model
-        let mesh = MeshResource.generateBox(size: 0.1, cornerRadius: 0.005)
-        let material = SimpleMaterial(color: .gray, roughness: 0.15, isMetallic: true)
-        let model = ModelEntity(mesh: mesh, materials: [material])
-        model.transform.translation.y = 0.05
-
-        // Create horizontal plane anchor for the content
-        let anchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.2, 0.2)))
-        anchor.children.append(model)
-
-        // Add the horizontal plane anchor to the scene
-        arView.scene.anchors.append(anchor)
-
+        updateARSession(for: arView)
         return arView
-        
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func updateUIView(_ uiView: ARView, context: Context) {
+        updateARSession(for: uiView)
+    }
     
+    private func updateARSession(for arView: ARView) {
+        arView.session.pause() // Pause the current session before reconfiguring
+        
+        if useFrontCamera {
+            // Configure AR session for face tracking (front camera)
+            let config = ARFaceTrackingConfiguration()
+            arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
+            
+        } else {
+            let config = ARWorldTrackingConfiguration()
+            config.planeDetection = [.horizontal, .vertical]
+            arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
+            arView.scene.anchors.removeAll()
+        }
+    }
+
 }
 
 #Preview {
