@@ -9,10 +9,11 @@ import SwiftUI
 
 struct SplashScreenView: View {
     var body: some View {
+        // Z stack is putting this in front of all the content
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
             
-            Text("SplashScreen").font(.title).foregroundColor(.white)
+            Text("barber.ai").font(.title).foregroundColor(.white)
         }
     }
 }

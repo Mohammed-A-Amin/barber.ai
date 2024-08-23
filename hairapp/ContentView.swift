@@ -11,16 +11,31 @@ import ARKit
 
 struct ContentView: View {
     @State private var useFrontCamera: Bool = false // State to track which camera to use
+    //Set this to true when we want the splash screen
     @State private var showSplash = true
     var body: some View {
+        //Z Stack on the outside is for the splashscreen
         ZStack{
             if showSplash {
-                SplashScreenView().transition(.opacity).animation(.easeOut(duration: 1.5))
-                Text("barber.ai")
-            }
-//            else {
-//                Text("Hi Hagoo").font(.largeTitle)
-//            }
+                SplashScreenView().transition(.opacity).animation(.easeOut(duration: 0.5))
+//                Text("barber.ai")
+            } else {
+                //After splashscreen code runs then we move to the VStack or our actual app
+                VStack {
+                    ARViewContainer(useFrontCamera: $useFrontCamera)
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    Button(action: {
+                        useFrontCamera.toggle()
+                    }) {
+                        Text("Switch Camera")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                    .padding()
+                }            }
         }
         .onAppear{
             DispatchQueue.main.asyncAfter(deadline: .now() + 3){
@@ -29,23 +44,7 @@ struct ContentView: View {
                 }
             }
         }
-        
-        
-        VStack {
-            ARViewContainer(useFrontCamera: $useFrontCamera)
-                .edgesIgnoringSafeArea(.all)
             
-            Button(action: {
-                useFrontCamera.toggle()
-            }) {
-                Text("Switch Camera")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
-            .padding()
-        }
     }
 }
 
