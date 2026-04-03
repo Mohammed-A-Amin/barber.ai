@@ -1,0 +1,13 @@
+{
+  "name": "barber-ai",
+  "private": true,
+  "workspaces": [
+    "apps/api",
+    "apps/worker"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace apps/api",
+    "dev:worker": "npm run dev --workspace apps/worker",
+    "build": "npm run build --workspaces"
+  }
+}
