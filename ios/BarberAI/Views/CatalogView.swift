@@ -7,6 +7,8 @@ struct CatalogView: View {
     }
 }
 
-#Preview {
-    CatalogView()
+struct CatalogView_Previews: PreviewProvider {
+    static var previews: some View {
+        CatalogView()
+    }
 }

@@ -17,6 +17,8 @@ struct PlaceholderScreen: View {
     }
 }
 
-#Preview {
-    PlaceholderScreen(title: "Example")
+struct PlaceholderScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        PlaceholderScreen(title: "Example")
+    }
 }
