@@ -3,8 +3,10 @@ import RealityKit
 import SwiftUI
 
 struct ARViewContainer: UIViewRepresentable {
+    @ObservedObject var sessionState: FaceTrackingSessionState
+
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(sessionState: sessionState)
     }
 
     func makeUIView(context: Context) -> ARView {
@@ -15,7 +17,8 @@ struct ARViewContainer: UIViewRepresentable {
         )
 
         // Keep ARView creation separate from session startup so future work can
-        // add face-anchored hairstyle entities without rewriting TryOnView.
+        // swap the debug attachment for a hairstyle model without changing the
+        // SwiftUI surface area.
         context.coordinator.sessionController.prepare(arView: arView)
         context.coordinator.sessionController.startFaceTracking()
 
@@ -31,15 +34,36 @@ struct ARViewContainer: UIViewRepresentable {
     }
 
     final class Coordinator {
-        let sessionController = FaceTrackingSessionController()
+        let sessionController: FaceTrackingSessionController
+
+        init(sessionState: FaceTrackingSessionState) {
+            self.sessionController = FaceTrackingSessionController(sessionState: sessionState)
+        }
     }
 }
 
-final class FaceTrackingSessionController {
+@MainActor
+final class FaceTrackingSessionState: ObservableObject {
+    @Published var trackingStatus = "Starting face tracking"
+    @Published var faceStatus = "Looking for face"
+
+    var combinedStatus: String {
+        "\(trackingStatus) · \(faceStatus)"
+    }
+}
+
+final class FaceTrackingSessionController: NSObject {
     private weak var arView: ARView?
+    private let sessionState: FaceTrackingSessionState
+    private var faceAnchor: AnchorEntity?
+
+    init(sessionState: FaceTrackingSessionState) {
+        self.sessionState = sessionState
+    }
 
     func prepare(arView: ARView) {
         self.arView = arView
+        arView.session.delegate = self
         configureScene()
     }
 
@@ -67,7 +91,94 @@ final class FaceTrackingSessionController {
         }
 
         arView.environment.sceneUnderstanding.options = []
+        arView.renderOptions.insert(.disableMotionBlur)
 
-        // Future step: create a face anchor and attach hairstyle content here.
+        // This face anchor is the insertion point for future hairstyle entities.
+        let faceAnchor = AnchorEntity(.face)
+        faceAnchor.addChild(makeDebugAttachmentEntity())
+        arView.scene.addAnchor(faceAnchor)
+        self.faceAnchor = faceAnchor
+    }
+
+    private func makeDebugAttachmentEntity() -> Entity {
+        // A small marker on the forehead verifies that face anchor transforms
+        // are live before any hairstyle asset is introduced.
+        let mesh = MeshResource.generateSphere(radius: 0.035)
+        let material = SimpleMaterial(color: .systemTeal, roughness: 0.2, isMetallic: false)
+        let marker = ModelEntity(mesh: mesh, materials: [material])
+        marker.name = "FaceDebugMarker"
+        marker.position = [0, 0.09, 0.06]
+
+        return marker
+    }
+
+    @MainActor
+    private func setTrackingStatus(_ value: String) {
+        sessionState.trackingStatus = value
+    }
+
+    @MainActor
+    private func setFaceStatus(_ value: String) {
+        sessionState.faceStatus = value
+    }
+}
+
+extension FaceTrackingSessionController: ARSessionDelegate {
+    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        let trackingText: String
+
+        switch camera.trackingState {
+        case .normal:
+            trackingText = "Tracking active"
+        case .notAvailable:
+            trackingText = "Tracking unavailable"
+        case .limited(let reason):
+            trackingText = "Limited: \(reason.description)"
+        }
+
+        Task { @MainActor in
+            setTrackingStatus(trackingText)
+        }
+    }
+
+    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+        updateFaceTrackingState(from: anchors, isTracked: true)
+    }
+
+    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+        updateFaceTrackingState(from: anchors, isTracked: true)
+    }
+
+    func session(_ session: ARSession, didRemove anchors: [ARAnchor]) {
+        updateFaceTrackingState(from: anchors, isTracked: false)
+    }
+
+    private func updateFaceTrackingState(from anchors: [ARAnchor], isTracked: Bool) {
+        guard anchors.contains(where: { $0 is ARFaceAnchor }) else {
+            return
+        }
+
+        let statusText = isTracked ? "Face anchor detected" : "Face lost"
+
+        Task { @MainActor in
+            setFaceStatus(statusText)
+        }
+    }
+}
+
+private extension ARCamera.TrackingState.Reason {
+    var description: String {
+        switch self {
+        case .initializing:
+            return "initializing"
+        case .excessiveMotion:
+            return "move more slowly"
+        case .insufficientFeatures:
+            return "find better lighting"
+        case .relocalizing:
+            return "relocalizing"
+        @unknown default:
+            return "unknown"
+        }
     }
 }

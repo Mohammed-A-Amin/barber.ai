@@ -2,6 +2,8 @@ import ARKit
 import SwiftUI
 
 struct TryOnView: View {
+    @StateObject private var sessionState = FaceTrackingSessionState()
+
     private var isFaceTrackingSupported: Bool {
         ARFaceTrackingConfiguration.isSupported
     }
@@ -9,12 +11,20 @@ struct TryOnView: View {
     var body: some View {
         Group {
             if isFaceTrackingSupported {
-                ZStack(alignment: .top) {
-                    ARViewContainer()
+                ZStack {
+                    ARViewContainer(sessionState: sessionState)
                         .ignoresSafeArea()
 
-                    StatusBadge(title: "Face tracking active")
-                        .padding(.top, 16)
+                    VStack {
+                        StatusBadge(title: sessionState.combinedStatus)
+                            .padding(.top, 16)
+
+                        Spacer()
+
+                        InstructionOverlay()
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 20)
+                    }
                 }
                 .background(Color.black)
             } else {
@@ -63,5 +73,16 @@ private struct UnsupportedFaceTrackingView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(24)
         .background(Color(.systemGroupedBackground))
+    }
+}
+
+private struct InstructionOverlay: View {
+    var body: some View {
+        Text("Debug marker is attached to the face anchor. This is the insertion point for the future hairstyle model.")
+            .font(.footnote)
+            .foregroundStyle(.white)
+            .padding(14)
+            .frame(maxWidth: .infinity)
+            .background(.black.opacity(0.7), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 }
