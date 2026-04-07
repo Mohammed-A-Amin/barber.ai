@@ -21,7 +21,7 @@ struct TryOnView: View {
 
                         Spacer()
 
-                        InstructionOverlay()
+                        InstructionOverlay(message: sessionState.attachmentStatus)
                             .padding(.horizontal, 16)
                             .padding(.bottom, 20)
                     }
@@ -77,12 +77,20 @@ private struct UnsupportedFaceTrackingView: View {
 }
 
 private struct InstructionOverlay: View {
+    let message: String
+
     var body: some View {
-        Text("Debug marker is attached to the face anchor. This is the insertion point for the future hairstyle model.")
-            .font(.footnote)
-            .foregroundStyle(.white)
-            .padding(14)
-            .frame(maxWidth: .infinity)
-            .background(.black.opacity(0.7), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        VStack(alignment: .leading, spacing: 8) {
+            Text(message)
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(.white)
+
+            Text("The face anchor pipeline is ready. Add a bundled `StarterHair.usdz` file to replace the debug marker.")
+                .font(.footnote)
+                .foregroundStyle(.white.opacity(0.9))
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.black.opacity(0.7), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 }

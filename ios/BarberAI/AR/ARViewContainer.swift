@@ -46,6 +46,7 @@ struct ARViewContainer: UIViewRepresentable {
 final class FaceTrackingSessionState: ObservableObject {
     @Published var trackingStatus = "Starting face tracking"
     @Published var faceStatus = "Looking for face"
+    @Published var attachmentStatus = "Awaiting hairstyle asset"
 
     var combinedStatus: String {
         "\(trackingStatus) · \(faceStatus)"
@@ -56,6 +57,7 @@ final class FaceTrackingSessionController: NSObject {
     private weak var arView: ARView?
     private let sessionState: FaceTrackingSessionState
     private var faceAnchor: AnchorEntity?
+    private let attachmentController = HairstyleAttachmentController()
 
     init(sessionState: FaceTrackingSessionState) {
         self.sessionState = sessionState
@@ -95,21 +97,14 @@ final class FaceTrackingSessionController: NSObject {
 
         // This face anchor is the insertion point for future hairstyle entities.
         let faceAnchor = AnchorEntity(.face)
-        faceAnchor.addChild(makeDebugAttachmentEntity())
+        let attachment = attachmentController.makeAttachmentEntity(statusHandler: { [weak self] status in
+            Task { @MainActor in
+                self?.sessionState.attachmentStatus = status
+            }
+        })
+        faceAnchor.addChild(attachment)
         arView.scene.addAnchor(faceAnchor)
         self.faceAnchor = faceAnchor
-    }
-
-    private func makeDebugAttachmentEntity() -> Entity {
-        // A small marker on the forehead verifies that face anchor transforms
-        // are live before any hairstyle asset is introduced.
-        let mesh = MeshResource.generateSphere(radius: 0.035)
-        let material = SimpleMaterial(color: .systemTeal, roughness: 0.2, isMetallic: false)
-        let marker = ModelEntity(mesh: mesh, materials: [material])
-        marker.name = "FaceDebugMarker"
-        marker.position = [0, 0.09, 0.06]
-
-        return marker
     }
 
     @MainActor
@@ -120,6 +115,53 @@ final class FaceTrackingSessionController: NSObject {
     @MainActor
     private func setFaceStatus(_ value: String) {
         sessionState.faceStatus = value
+    }
+}
+
+private struct HairstyleAttachmentDescriptor {
+    let resourceName: String
+    let position: SIMD3<Float>
+    let scale: SIMD3<Float>
+    let orientation: simd_quatf
+
+    static let placeholder = HairstyleAttachmentDescriptor(
+        resourceName: "StarterHair.usdz",
+        position: [0, 0.12, 0.02],
+        scale: [1.0, 1.0, 1.0],
+        orientation: simd_quatf(angle: 0, axis: [0, 1, 0])
+    )
+}
+
+private final class HairstyleAttachmentController {
+    private let descriptor = HairstyleAttachmentDescriptor.placeholder
+
+    func makeAttachmentEntity(statusHandler: (String) -> Void) -> Entity {
+        do {
+            // This loads a bundled model by name. When a real hairstyle asset is
+            // added to the app target, only the descriptor should need updating.
+            let hairstyleEntity = try Entity.load(named: descriptor.resourceName)
+            hairstyleEntity.name = "HairstyleAttachment"
+            hairstyleEntity.position = descriptor.position
+            hairstyleEntity.scale = descriptor.scale
+            hairstyleEntity.orientation = descriptor.orientation
+            statusHandler("Loaded hairstyle: \(descriptor.resourceName)")
+
+            return hairstyleEntity
+        } catch {
+            statusHandler("Using debug marker: add \(descriptor.resourceName) to the app bundle")
+            return makeDebugAttachmentEntity()
+        }
+    }
+
+    private func makeDebugAttachmentEntity() -> Entity {
+        // This temporary marker sits where a hairstyle root should be attached.
+        let mesh = MeshResource.generateSphere(radius: 0.035)
+        let material = SimpleMaterial(color: .systemTeal, roughness: 0.2, isMetallic: false)
+        let marker = ModelEntity(mesh: mesh, materials: [material])
+        marker.name = "FaceDebugMarker"
+        marker.position = [0, 0.09, 0.06]
+
+        return marker
     }
 }
 

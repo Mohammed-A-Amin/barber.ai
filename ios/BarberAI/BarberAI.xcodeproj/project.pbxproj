@@ -17,6 +17,7 @@
 		B10000000000000000000008 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000009 /* ProfileView.swift */; };
 		B10000000000000000000009 /* TryOnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000A /* TryOnView.swift */; };
 		B1000000000000000000000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000B /* Assets.xcassets */; };
+		B1000000000000000000000B /* StarterHair.usdz in Resources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000D /* StarterHair.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		F1000000000000000000000A /* TryOnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryOnView.swift; sourceTree = "<group>"; };
 		F1000000000000000000000B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1000000000000000000000C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1000000000000000000000D /* StarterHair.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = StarterHair.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				G10000000000000000000004 /* AR */,
 				G10000000000000000000005 /* Views */,
 				F1000000000000000000000B /* Assets.xcassets */,
+				F1000000000000000000000D /* StarterHair.usdz */,
 				F1000000000000000000000C /* Info.plist */,
 			);
 			name = BarberAI;
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1000000000000000000000A /* Assets.xcassets in Resources */,
+				B1000000000000000000000B /* StarterHair.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
