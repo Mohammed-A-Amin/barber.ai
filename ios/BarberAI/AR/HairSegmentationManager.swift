@@ -11,10 +11,19 @@ import MediaPipeTasksVision
 final class HairSegmentationManager: NSObject {
     private let processingQueue = DispatchQueue(label: "ai.barber.hair-segmentation", qos: .userInitiated)
     private let ciContext = CIContext(options: [.cacheIntermediates: false])
+    private let maskStateLock = NSLock()
     private var pixelBufferPool: CVPixelBufferPool?
     private var processedFrameCount = 0
     private var isEnabled = false
     private var isInferenceInFlight = false
+    private var smoothedMaskValues: [Float] = []
+    private var smoothedMaskSize = CGSize.zero
+
+    // Blend raw mask frames over time to reduce flicker while keeping the
+    // overlay responsive enough for head movement.
+    private let temporalSmoothingFactor: Float = 0.35
+    private let maskActivationThreshold: Float = 0.12
+    private let maxOverlayAlpha: Float = 150.0
 
     #if canImport(MediaPipeTasksVision)
     private let modelName = "selfie_multiclass_256x256"
@@ -51,6 +60,7 @@ final class HairSegmentationManager: NSObject {
         isEnabled = enabled
 
         if !enabled {
+            resetStabilizationState()
             onMaskOverlayUpdated?(nil)
             onStatusChanged?("Hair mask disabled")
             return
@@ -139,6 +149,14 @@ final class HairSegmentationManager: NSObject {
         return pool
     }
 
+    private func resetStabilizationState() {
+        maskStateLock.lock()
+        defer { maskStateLock.unlock() }
+
+        smoothedMaskValues.removeAll(keepingCapacity: false)
+        smoothedMaskSize = .zero
+    }
+
     private var isSegmenterAvailable: Bool {
         #if canImport(MediaPipeTasksVision)
         return imageSegmenter != nil
@@ -201,17 +219,37 @@ extension HairSegmentationManager: ImageSegmenterLiveStreamDelegate {
         let categoryBytes = UnsafeBufferPointer(start: mask.uint8Data, count: pixelCount)
         var overlayBytes = [UInt8](repeating: 0, count: pixelCount * 4)
 
+        maskStateLock.lock()
+
+        if smoothedMaskSize.width != CGFloat(width) || smoothedMaskSize.height != CGFloat(height) {
+            smoothedMaskValues = Array(repeating: 0, count: pixelCount)
+            smoothedMaskSize = CGSize(width: width, height: height)
+        } else if smoothedMaskValues.count != pixelCount {
+            smoothedMaskValues = Array(repeating: 0, count: pixelCount)
+        }
+
         for index in 0..<pixelCount {
-            guard categoryBytes[index] == hairCategoryIndex else {
+            let currentValue: Float = categoryBytes[index] == hairCategoryIndex ? 1.0 : 0.0
+            let previousValue = smoothedMaskValues[index]
+            let smoothedValue = previousValue + (currentValue - previousValue) * temporalSmoothingFactor
+            smoothedMaskValues[index] = smoothedValue
+
+            guard smoothedValue > maskActivationThreshold else {
                 continue
             }
 
+            let normalizedAlpha = min(
+                1.0,
+                max(0.0, (smoothedValue - maskActivationThreshold) / (1.0 - maskActivationThreshold))
+            )
             let pixelOffset = index * 4
             overlayBytes[pixelOffset] = 255
             overlayBytes[pixelOffset + 1] = 0
             overlayBytes[pixelOffset + 2] = 0
-            overlayBytes[pixelOffset + 3] = 150
+            overlayBytes[pixelOffset + 3] = UInt8(normalizedAlpha * maxOverlayAlpha)
         }
+
+        maskStateLock.unlock()
 
         let bytesPerRow = width * 4
         let colorSpace = CGColorSpaceCreateDeviceRGB()
