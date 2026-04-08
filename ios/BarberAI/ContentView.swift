@@ -46,7 +46,7 @@ private struct AppTab<Content: View>: View {
             content
         }
         .tabItem {
-            Label(title, systemImage: systemImage)
+            Image(systemName: systemImage)
         }
     }
 }

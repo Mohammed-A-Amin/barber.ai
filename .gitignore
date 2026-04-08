@@ -4,3 +4,7 @@ dist
 build
 .DS_Store
 DerivedData
+ios/BarberAI/Pods/
+ios/BarberAI/BarberAI.xcworkspace.bak/
+ios/BarberAI/**/*.xcuserstate
+ios/BarberAI/**/xcuserdata/

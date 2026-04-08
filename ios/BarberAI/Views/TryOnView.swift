@@ -15,14 +15,29 @@ struct TryOnView: View {
                     ARViewContainer(sessionState: sessionState)
                         .ignoresSafeArea()
 
+                    if sessionState.showHairMask, let overlay = sessionState.hairMaskOverlay {
+                        Image(uiImage: overlay)
+                            .resizable()
+                            .interpolation(.none)
+                            .scaledToFill()
+                            // MediaPipe's mask texture arrives upside down relative to
+                            // the AR preview, so flip it vertically before compositing.
+                            .scaleEffect(x: 1, y: -1)
+                            // The AR preview and segmentation buffer are slightly offset
+                            // horizontally after aspect-fill compositing on device.
+                            .offset(x: -60)
+                            .ignoresSafeArea()
+                            .allowsHitTesting(false)
+                    }
+
                     VStack {
-                        StatusBadge(title: sessionState.combinedStatus)
+                        StatusBadge(title: sessionState.trackingStatus)
                             .padding(.top, 16)
 
                         Spacer()
 
-                        InstructionOverlay(message: sessionState.attachmentStatus)
-                            .padding(.horizontal, 16)
+                        SegmentationControlPanel(sessionState: sessionState)
+                            .padding(.horizontal, 20)
                             .padding(.bottom, 20)
                     }
                 }
@@ -76,21 +91,14 @@ private struct UnsupportedFaceTrackingView: View {
     }
 }
 
-private struct InstructionOverlay: View {
-    let message: String
+private struct SegmentationControlPanel: View {
+    @ObservedObject var sessionState: FaceTrackingSessionState
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(message)
-                .font(.footnote.weight(.semibold))
-                .foregroundStyle(.white)
-
-            Text("The face anchor pipeline is ready. Add a bundled `StarterHair.usdz` file to replace the debug marker.")
-                .font(.footnote)
-                .foregroundStyle(.white.opacity(0.9))
+        Toggle(isOn: $sessionState.showHairMask) {
+            EmptyView()
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.black.opacity(0.7), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .labelsHidden()
+        .tint(.red)
     }
 }
