@@ -4,11 +4,21 @@ struct TryOnView: View {
     private let cameraKitConfiguration = CameraKitConfiguration.fromBundle
 
     var body: some View {
-        CameraKitContainerView(configuration: cameraKitConfiguration)
-            .ignoresSafeArea()
-            .background(Color.black)
-            .navigationTitle("Try On")
-            .navigationBarTitleDisplayMode(.inline)
+        ZStack {
+            CameraKitContainerView(configuration: cameraKitConfiguration)
+                .ignoresSafeArea()
+                .background(Color.black)
+
+            ARAssistantOverlayView(
+                context: BarberAIAPI.StyleContext(
+                    activeLensId: cameraKitConfiguration.lensIDs.first,
+                    activeStyle: "Hair Example",
+                    hairColor: nil
+                )
+            )
+        }
+        .navigationTitle("Try On")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

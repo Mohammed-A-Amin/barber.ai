@@ -32,6 +32,8 @@
 	<string>$(SNAP_CAMERA_KIT_LENS_GROUP_ID)</string>
 	<key>BarberAICameraKitLensID</key>
 	<string>$(SNAP_CAMERA_KIT_LENS_ID)</string>
+	<key>BarberAIAPIBaseURL</key>
+	<string>$(BARBER_AI_API_BASE_URL)</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchScreen</key>

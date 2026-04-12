@@ -1,16 +1,20 @@
 PODS:
+  - GoogleWebRTC (1.1.32000)
   - SCCameraKit (1.48.0)
 
 DEPENDENCIES:
+  - GoogleWebRTC
   - SCCameraKit
 
 SPEC REPOS:
   trunk:
+    - GoogleWebRTC
     - SCCameraKit
 
 SPEC CHECKSUMS:
+  GoogleWebRTC: 4d261187b30512efdb711d21fa961a6adf138717
   SCCameraKit: b7e0de6f222d8e016acc472b41558c949a315042
 
-PODFILE CHECKSUM: 10ca33adfb07bb23d0b48dbb78c98d33ed87ec37
+PODFILE CHECKSUM: dad5a5fd08e30178bc9eaed9cfc9ccfae2c73622
 
 COCOAPODS: 1.16.2

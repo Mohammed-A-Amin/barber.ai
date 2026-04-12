@@ -17,6 +17,10 @@
 		B10000000000000000000008 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000009 /* ProfileView.swift */; };
 		B10000000000000000000009 /* TryOnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000A /* TryOnView.swift */; };
 		B1000000000000000000000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000B /* Assets.xcassets */; };
+		B1000000000000000000000B /* BarberAIAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000D /* BarberAIAPI.swift */; };
+		B1000000000000000000000C /* ARViewSnapshotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000E /* ARViewSnapshotter.swift */; };
+		B1000000000000000000000D /* RealtimeVoiceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000F /* RealtimeVoiceSession.swift */; };
+		B1000000000000000000000E /* ARAssistantOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000010 /* ARAssistantOverlayView.swift */; };
 		E8AA2C423FB6F50C48FD5CFA /* Pods_BarberAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E64193E8D3B8E0B8D8D537B /* Pods_BarberAI.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +53,10 @@
 		F1000000000000000000000A /* TryOnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryOnView.swift; sourceTree = "<group>"; };
 		F1000000000000000000000B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1000000000000000000000C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1000000000000000000000D /* BarberAIAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberAIAPI.swift; sourceTree = "<group>"; };
+		F1000000000000000000000E /* ARViewSnapshotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewSnapshotter.swift; sourceTree = "<group>"; };
+		F1000000000000000000000F /* RealtimeVoiceSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeVoiceSession.swift; sourceTree = "<group>"; };
+		F10000000000000000000010 /* ARAssistantOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARAssistantOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,7 @@
 				F10000000000000000000002 /* BarberAIApp.swift */,
 				F10000000000000000000003 /* ContentView.swift */,
 				G10000000000000000000004 /* AR */,
+				G10000000000000000000006 /* AI */,
 				G10000000000000000000005 /* Views */,
 				F1000000000000000000000B /* Assets.xcassets */,
 				F1000000000000000000000C /* Info.plist */,
@@ -132,6 +141,7 @@
 		G10000000000000000000005 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F10000000000000000000010 /* ARAssistantOverlayView.swift */,
 				F10000000000000000000005 /* CatalogView.swift */,
 				F10000000000000000000006 /* ChatView.swift */,
 				F10000000000000000000007 /* LoginView.swift */,
@@ -140,6 +150,16 @@
 				F1000000000000000000000A /* TryOnView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000006 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				F1000000000000000000000E /* ARViewSnapshotter.swift */,
+				F1000000000000000000000D /* BarberAIAPI.swift */,
+				F1000000000000000000000F /* RealtimeVoiceSession.swift */,
+			);
+			path = AI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,14 +282,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1000000000000000000000E /* ARAssistantOverlayView.swift in Sources */,
 				B10000000000000000000003 /* ARViewContainer.swift in Sources */,
+				B1000000000000000000000C /* ARViewSnapshotter.swift in Sources */,
 				B10000000000000000000001 /* BarberAIApp.swift in Sources */,
+				B1000000000000000000000B /* BarberAIAPI.swift in Sources */,
 				B10000000000000000000004 /* CatalogView.swift in Sources */,
 				B10000000000000000000005 /* ChatView.swift in Sources */,
 				B10000000000000000000002 /* ContentView.swift in Sources */,
 				B10000000000000000000006 /* LoginView.swift in Sources */,
 				B10000000000000000000007 /* PlaceholderScreen.swift in Sources */,
 				B10000000000000000000008 /* ProfileView.swift in Sources */,
+				B1000000000000000000000D /* RealtimeVoiceSession.swift in Sources */,
 				B10000000000000000000009 /* TryOnView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +439,7 @@
 				DEVELOPMENT_TEAM = J9CLXN4D2F;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(inherited) arm64";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -442,6 +467,7 @@
 				DEVELOPMENT_TEAM = J9CLXN4D2F;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(inherited) arm64";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
