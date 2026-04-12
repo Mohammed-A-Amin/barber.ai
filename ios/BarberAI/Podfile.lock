@@ -1,20 +1,16 @@
 PODS:
-  - MediaPipeTasksCommon (0.10.33)
-  - MediaPipeTasksVision (0.10.33):
-    - MediaPipeTasksCommon (= 0.10.33)
+  - SCCameraKit (1.48.0)
 
 DEPENDENCIES:
-  - MediaPipeTasksVision
+  - SCCameraKit
 
 SPEC REPOS:
   trunk:
-    - MediaPipeTasksCommon
-    - MediaPipeTasksVision
+    - SCCameraKit
 
 SPEC CHECKSUMS:
-  MediaPipeTasksCommon: 912f7942cc3aa057bb406af435aaea4c1959255a
-  MediaPipeTasksVision: 2df54e614f029da790f442c8b330a37c841a422f
+  SCCameraKit: b7e0de6f222d8e016acc472b41558c949a315042
 
-PODFILE CHECKSUM: be75b37969c6fa32b2f59c6392fbe20d6a2c5b8d
+PODFILE CHECKSUM: 10ca33adfb07bb23d0b48dbb78c98d33ed87ec37
 
 COCOAPODS: 1.16.2

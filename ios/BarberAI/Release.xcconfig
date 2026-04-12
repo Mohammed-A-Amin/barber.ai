@@ -1,0 +1,7 @@
+#include "Pods/Target Support Files/Pods-BarberAI/Pods-BarberAI.release.xcconfig"
+
+SNAP_CAMERA_KIT_API_TOKEN =
+SNAP_CAMERA_KIT_LENS_GROUP_ID =
+SNAP_CAMERA_KIT_LENS_ID =
+
+#include? "Release.local.xcconfig"

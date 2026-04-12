@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		244DF990CCC1E3020FD7121B /* Pods_BarberAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9184F929D3B11DFFFD92CF8C /* Pods_BarberAI.framework */; };
-		37E38B622F84A8EA00A29B63 /* selfie_multiclass_256x256.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 37E38B612F84A8EA00A29B63 /* selfie_multiclass_256x256.tflite */; };
-		7063EBE6FB121D45EDC5A657 /* Pods_BarberAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F1CBF02F84B62A00D4BC43 /* Pods_BarberAI.framework */; };
 		B10000000000000000000001 /* BarberAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000002 /* BarberAIApp.swift */; };
 		B10000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000003 /* ContentView.swift */; };
 		B10000000000000000000003 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000004 /* ARViewContainer.swift */; };
@@ -20,17 +17,10 @@
 		B10000000000000000000008 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000009 /* ProfileView.swift */; };
 		B10000000000000000000009 /* TryOnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000A /* TryOnView.swift */; };
 		B1000000000000000000000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000B /* Assets.xcassets */; };
-		B1000000000000000000000C /* HairSegmentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000F /* HairSegmentationManager.swift */; };
+		E8AA2C423FB6F50C48FD5CFA /* Pods_BarberAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E64193E8D3B8E0B8D8D537B /* Pods_BarberAI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		37F1CBEF2F84B62A00D4BC43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA0DB79BAF2DB1A671C12C41 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1CC867A5C0ADEC92AD387C0F98442D5A;
-			remoteInfo = "Pods-BarberAI";
-		};
 		AA0DB79BAF2DB1A671C12C42 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA0DB79BAF2DB1A671C12C41 /* Pods.xcodeproj */;
@@ -43,9 +33,10 @@
 /* Begin PBXFileReference section */
 		0D923BD555D36E8EC526AB16 /* Pods-BarberAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberAI.debug.xcconfig"; path = "Target Support Files/Pods-BarberAI/Pods-BarberAI.debug.xcconfig"; sourceTree = "<group>"; };
 		11E802BC36BB014010F8913A /* Pods-BarberAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberAI.release.xcconfig"; path = "Target Support Files/Pods-BarberAI/Pods-BarberAI.release.xcconfig"; sourceTree = "<group>"; };
-		37E38B612F84A8EA00A29B63 /* selfie_multiclass_256x256.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = selfie_multiclass_256x256.tflite; sourceTree = "<group>"; };
-		9184F929D3B11DFFFD92CF8C /* Pods_BarberAI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberAI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E64193E8D3B8E0B8D8D537B /* Pods_BarberAI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberAI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0DB79BAF2DB1A671C12C41 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		F00000000000000000000001 /* Debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		F00000000000000000000002 /* Release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		F10000000000000000000001 /* BarberAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarberAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10000000000000000000002 /* BarberAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberAIApp.swift; sourceTree = "<group>"; };
 		F10000000000000000000003 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,7 +49,6 @@
 		F1000000000000000000000A /* TryOnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryOnView.swift; sourceTree = "<group>"; };
 		F1000000000000000000000B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1000000000000000000000C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1000000000000000000000F /* HairSegmentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairSegmentationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7063EBE6FB121D45EDC5A657 /* Pods_BarberAI.framework in Frameworks */,
-				244DF990CCC1E3020FD7121B /* Pods_BarberAI.framework in Frameworks */,
+				E8AA2C423FB6F50C48FD5CFA /* Pods_BarberAI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +66,6 @@
 		37F1CBEA2F84B62A00D4BC43 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37F1CBF02F84B62A00D4BC43 /* Pods_BarberAI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,8 +73,7 @@
 		8223C2161C38204CBF9F2B0F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				37F1CBF02F84B62A00D4BC43 /* Pods_BarberAI.framework */,
-				9184F929D3B11DFFFD92CF8C /* Pods_BarberAI.framework */,
+				4E64193E8D3B8E0B8D8D537B /* Pods_BarberAI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -104,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				G10000000000000000000003 /* BarberAI */,
+				F00000000000000000000001 /* Debug.xcconfig */,
+				F00000000000000000000002 /* Release.xcconfig */,
 				G10000000000000000000002 /* Products */,
 				938A289CF2040AC89DE6B22F /* Pods */,
 				AA0DB79BAF2DB1A671C12C41 /* Pods.xcodeproj */,
@@ -128,7 +117,6 @@
 				G10000000000000000000005 /* Views */,
 				F1000000000000000000000B /* Assets.xcassets */,
 				F1000000000000000000000C /* Info.plist */,
-				37E38B612F84A8EA00A29B63 /* selfie_multiclass_256x256.tflite */,
 			);
 			name = BarberAI;
 			sourceTree = "<group>";
@@ -137,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				F10000000000000000000004 /* ARViewContainer.swift */,
-				F1000000000000000000000F /* HairSegmentationManager.swift */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -166,6 +153,7 @@
 				S10000000000000000000001 /* Sources */,
 				P10000000000000000000001 /* Frameworks */,
 				R10000000000000000000001 /* Resources */,
+				3577F66267AAD3CE688C284C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,22 +204,11 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		37F1CBF02F84B62A00D4BC43 /* Pods_BarberAI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Pods_BarberAI.framework;
-			remoteRef = 37F1CBEF2F84B62A00D4BC43 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		R10000000000000000000001 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37E38B622F84A8EA00A29B63 /* selfie_multiclass_256x256.tflite in Resources */,
 				B1000000000000000000000A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +216,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3577F66267AAD3CE688C284C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberAI/Pods-BarberAI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberAI/Pods-BarberAI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BarberAI/Pods-BarberAI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AA0DB79BAF2DB1A671C12C38 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -273,7 +267,6 @@
 				B10000000000000000000004 /* CatalogView.swift in Sources */,
 				B10000000000000000000005 /* ChatView.swift in Sources */,
 				B10000000000000000000002 /* ContentView.swift in Sources */,
-				B1000000000000000000000C /* HairSegmentationManager.swift in Sources */,
 				B10000000000000000000006 /* LoginView.swift in Sources */,
 				B10000000000000000000007 /* PlaceholderScreen.swift in Sources */,
 				B10000000000000000000008 /* ProfileView.swift in Sources */,
@@ -413,7 +406,7 @@
 		};
 		C10000000000000000000003 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D923BD555D36E8EC526AB16 /* Pods-BarberAI.debug.xcconfig */;
+			baseConfigurationReference = F00000000000000000000001 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -440,7 +433,7 @@
 		};
 		C10000000000000000000004 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 11E802BC36BB014010F8913A /* Pods-BarberAI.release.xcconfig */;
+			baseConfigurationReference = F00000000000000000000002 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -23,14 +23,21 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Barber AI uses the front camera for live face tracking and hairstyle try-on.</string>
+	<string>Barber AI uses the camera for Camera Kit AR try-on effects.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Barber AI may use the microphone when Camera Kit captures AR media.</string>
+	<key>SCCameraKitAPIToken</key>
+	<string>$(SNAP_CAMERA_KIT_API_TOKEN)</string>
+	<key>BarberAICameraKitLensGroupID</key>
+	<string>$(SNAP_CAMERA_KIT_LENS_GROUP_ID)</string>
+	<key>BarberAICameraKitLensID</key>
+	<string>$(SNAP_CAMERA_KIT_LENS_ID)</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>arkit</string>
 		<string>front-facing-camera</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>

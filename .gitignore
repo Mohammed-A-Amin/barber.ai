@@ -8,3 +8,4 @@ ios/BarberAI/Pods/
 ios/BarberAI/BarberAI.xcworkspace.bak/
 ios/BarberAI/**/*.xcuserstate
 ios/BarberAI/**/xcuserdata/
+ios/BarberAI/*.local.xcconfig

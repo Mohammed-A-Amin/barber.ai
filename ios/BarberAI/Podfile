@@ -2,33 +2,5 @@ platform :ios, '17.0'
 
 target 'BarberAI' do
   use_frameworks!
-  pod 'MediaPipeTasksVision'
-end
-
-post_install do |_installer|
-  xcconfig_paths = Dir.glob(
-    File.join(
-      __dir__,
-      'Pods',
-      'Target Support Files',
-      'Pods-BarberAI',
-      'Pods-BarberAI.*.xcconfig'
-    )
-  )
-
-  xcconfig_paths.each do |path|
-    contents = File.read(path)
-
-    contents.gsub!(
-      'FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/MediaPipeTasksCommon/frameworks" "${PODS_ROOT}/MediaPipeTasksVision/frameworks"',
-      'FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/MediaPipeTasksCommon/frameworks" "${PODS_ROOT}/MediaPipeTasksVision/frameworks" "${PODS_XCFRAMEWORKS_BUILD_DIR}/MediaPipeTasksCommon" "${PODS_XCFRAMEWORKS_BUILD_DIR}/MediaPipeTasksVision"'
-    )
-
-    contents.gsub!(
-      'OTHER_LDFLAGS = $(inherited) -ObjC -l"MediaPipeTasksCommon" -l"MediaPipeTasksVision" -l"c++" -framework "AVFoundation" -framework "Accelerate" -framework "AssetsLibrary" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreImage" -framework "CoreMedia" -framework "CoreVideo" -framework "QuartzCore"',
-      'OTHER_LDFLAGS = $(inherited) -ObjC -framework "MediaPipeTasksCommon" -framework "MediaPipeTasksVision" -l"c++" -framework "AVFoundation" -framework "Accelerate" -framework "AssetsLibrary" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreImage" -framework "CoreMedia" -framework "CoreVideo" -framework "QuartzCore"'
-    )
-
-    File.write(path, contents)
-  end
+  pod 'SCCameraKit'
 end
